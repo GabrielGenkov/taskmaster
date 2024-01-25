@@ -1,0 +1,48 @@
+{
+    "projects": [
+        { "id": 1, "name": "Project 1" },
+        { "id": 2, "name": "Project 2" }
+    ],
+    "tasks": [
+        {
+            "id": 101,
+            "title": "Task1",
+            "projectId": 1,
+            "description": "Task 1 for Project 1",
+            "dueDate": "2023-12-31",
+            "labels": ["frontend"],
+            "assignees": ["Pesho Peshov", "Joro Goshev"],
+            "categoryId": 1
+        },
+        {
+            "id": 102,
+            "title": "Task1",
+            "projectId": 1,
+            "description": "Task 2 for Project 1",
+            "dueDate": "2023-11-30",
+            "labels": ["backend"],
+            "assignees": ["Pesho Peshov", "Joro Goshev"],
+            "categoryId": 1
+        },
+        {
+            "id": 201,
+            "title": "Task1",
+            "projectId": 2,
+            "description": "Task 1 for Project 2",
+            "dueDate": "2024-01-15",
+            "labels": ["frontend", "backend"],
+            "assignees": ["pesho", "joro"],
+            "categoryId": 1
+        }
+    ],
+    "categories": [
+        { "id": 1, "name": "Open", "projectId": [1], "position": 1 },
+        { "id": 2, "name": "In Progress", "projectId": [1], "position": 2 },
+        { "id": 3, "name": "Done", "projectId": [1], "position": 3 },
+        { "id": 4, "name": "Testing", "projectId": [1], "position": 4 }
+    ],
+    "members": [
+        { "id": 1, "name": "Pesho Peshov" },
+        { "id": 2, "name": "Joro Goshev" }
+    ]
+}
