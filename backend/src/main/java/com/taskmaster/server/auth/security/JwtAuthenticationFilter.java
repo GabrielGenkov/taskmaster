@@ -1,5 +1,7 @@
 package com.taskmaster.server.auth.security;
 
+import com.taskmaster.server.auth.UserRepository;
+import com.taskmaster.server.auth.model.UserModel;
 import com.taskmaster.server.config.AppConstants;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenProvider tokenProvider;
     @Autowired
+    private UserRepository userRepository;
+    @Autowired
     private UserDetailsService userDetailsService;
 
     @Override
@@ -33,6 +37,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             String jwt = getJwtFromRequest(request);
             if (StringUtils.hasText(jwt) && tokenProvider.validateJwtToken(jwt)) {
                 String username = tokenProvider.getUsernameFromJwtToken(jwt);
+                UserModel user = userRepository.findByUsername(username)
+                        .orElseThrow(() -> new RuntimeException("User not found!"));
+                if (!user.isVerified()) {
+                    throw new RuntimeException("User not verified!");
+                }
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
@@ -46,6 +55,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request)  {
+        if (request.getServletPath().startsWith(AppConstants.API_BASE + "/v1/auth/")) return true;
         AntPathMatcher pathMatcher = new AntPathMatcher();
         return AppConstants.DO_NOT_FILTER_PATHS.stream()
                 .anyMatch(p -> pathMatcher.match(p, request.getServletPath()));

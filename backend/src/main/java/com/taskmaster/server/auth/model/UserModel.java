@@ -24,6 +24,7 @@ public class UserModel extends BaseEntity {
     private String lastName;
     @EmailValidator
     private String email;
+    private boolean verified;
     @Builder.Default
     private boolean enabled = true;
     @Builder.Default
