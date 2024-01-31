@@ -7,7 +7,6 @@ import javax.mail.MessagingException;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.mail.javamail.*;
 import org.springframework.stereotype.Service;
-
 @Service
 public class MailService {
 
