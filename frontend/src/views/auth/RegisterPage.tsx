@@ -25,7 +25,7 @@ function RegisterPage({}: Props) {
         console.log(email, password, firstName, lastName);
         signUp(email, password, firstName, lastName).then((res) => {
             console.log(res);
-            navigate("/login");
+            alert("We sent an email for verification.")
         });
     }
 
@@ -115,7 +115,7 @@ function RegisterPage({}: Props) {
                                 sx={{ mt: 3, mb: 2, color: "white" }}
                                 onClick={handleRegister}
                             >
-                                Continue
+                                Register
                             </Button>
                             <Box
                                 display="flex"

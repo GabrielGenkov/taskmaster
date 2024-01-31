@@ -118,7 +118,7 @@ function LogInPage({}: Props) {
                                 sx={{ mt: 3, mb: 2, color: "white" }}
                                 onClick={handleLogin}
                             >
-                                Continue
+                                Log in
                             </Button>
                             <Box
                                 display="flex"

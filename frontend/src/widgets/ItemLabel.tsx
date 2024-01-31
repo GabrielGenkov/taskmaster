@@ -15,7 +15,7 @@ function ItemLabel({label}: Props) {
             display="block"
             sx={(theme) => ({
                 backgroundColor:
-                    colorMode == "dark"
+                    colorMode === "dark"
                         ? theme.palette.secondary.main
                         : secondary.secondary700,
                 padding: "5px 10px",
