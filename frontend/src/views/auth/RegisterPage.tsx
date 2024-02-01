@@ -21,9 +21,11 @@ function RegisterPage({}: Props) {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
 
+
     const handleRegister = () => {
         console.log(email, password, firstName, lastName);
-        signUp(email, password, firstName, lastName).then((res) => {
+        let username = firstName;
+        signUp(email, password, username, firstName, lastName).then((res) => {
             console.log(res);
             alert("We sent an email for verification.")
         });

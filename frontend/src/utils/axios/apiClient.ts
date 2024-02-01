@@ -268,6 +268,7 @@ export const signIn = async (
 export const signUp = async (
     email: string,
     password: string,
+    username:string,
     firstName: string,
     lastName: string
 ): Promise<boolean> => {
@@ -275,6 +276,7 @@ export const signUp = async (
         const { data } = await axiosInstance.post("/api/v1/auth/sign-up", {
             email,
             password,
+            username,
             firstName,
             lastName,
         });
