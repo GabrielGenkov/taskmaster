@@ -52,18 +52,18 @@ public class AuthControllerV1 {
                 );
     }
 
-    @PutMapping("/auth/{email}/verify?token={token}")
-    public ResponseEntity<ResponseDTO> signUp(String email, String token) {
+    @GetMapping("/auth/{email}/verify")
+    public ResponseEntity<ResponseDTO> signUp(@PathVariable String email,@RequestParam String token) {
         authService.verifyUser(email, token);
 
         return ResponseEntity
-            .status(HttpStatus.OK)
-            .body(
-                ResponseDTO
-                    .builder()
-                    .message("Verified successfully!")
-                    .content(null)
-                    .build()
-            );
+                .status(HttpStatus.OK)
+                .body(
+                        ResponseDTO
+                                .builder()
+                                .message("Verified successfully!")
+                                .content(null)
+                                .build()
+                );
     }
 }
