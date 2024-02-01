@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Builder
+@ToString
 public class SignupDTO {
     private String username;
     @EmailValidator
